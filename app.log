@@ -1,0 +1,32 @@
+2026-01-29 17:57:58,685 - INFO - Application started
+2026-01-29 17:57:58,686 - DEBUG - Trying to divide 10 by 2
+2026-01-29 17:57:58,686 - INFO - Division successful
+2026-01-29 17:57:58,686 - DEBUG - Division operation completed
+2026-01-29 17:57:58,686 - DEBUG - Trying to divide 5 by 0
+2026-01-29 17:57:58,686 - ERROR - Division by zero attempted
+2026-01-29 17:57:58,686 - DEBUG - Division operation completed
+2026-01-29 17:57:58,686 - DEBUG - Trying to divide 10 by a
+2026-01-29 17:57:58,686 - ERROR - Invalid data type used for division
+2026-01-29 17:57:58,686 - DEBUG - Division operation completed
+2026-01-29 17:57:58,687 - DEBUG - Attempting to open file: sample.txt
+2026-01-29 17:57:58,687 - ERROR - File not found: sample.txt
+2026-01-29 17:57:58,695 - DEBUG - File operation finished
+2026-01-29 17:57:58,695 - DEBUG - Attempting to open file: missing_file.txt
+2026-01-29 17:57:58,695 - ERROR - File not found: missing_file.txt
+2026-01-29 17:57:58,695 - DEBUG - File operation finished
+2026-01-29 18:03:03,688 - INFO - Application started
+2026-01-29 18:03:03,688 - DEBUG - Trying to divide 10 by 2
+2026-01-29 18:03:03,689 - INFO - Division successful
+2026-01-29 18:03:03,689 - DEBUG - Division operation completed
+2026-01-29 18:03:03,689 - DEBUG - Trying to divide 5 by 0
+2026-01-29 18:03:03,689 - ERROR - Division by zero attempted
+2026-01-29 18:03:03,689 - DEBUG - Division operation completed
+2026-01-29 18:03:03,689 - DEBUG - Trying to divide 10 by a
+2026-01-29 18:03:03,689 - ERROR - Invalid data type used for division
+2026-01-29 18:03:03,689 - DEBUG - Division operation completed
+2026-01-29 18:03:03,689 - DEBUG - Attempting to open file: sample.txt
+2026-01-29 18:03:03,690 - INFO - File read successfully
+2026-01-29 18:03:03,690 - DEBUG - File operation finished
+2026-01-29 18:03:03,690 - DEBUG - Attempting to open file: missing_file.txt
+2026-01-29 18:03:03,690 - ERROR - File not found: missing_file.txt
+2026-01-29 18:03:03,691 - DEBUG - File operation finished
