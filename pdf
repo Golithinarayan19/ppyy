@@ -1,0 +1,101 @@
+import tkinter as tk
+from tkinter import filedialog, messagebox
+import fitz
+import pyttsx3
+import os
+
+pdf_file = None
+
+# -----------------------
+# Extract Text from PDF
+# -----------------------
+def extract_text(pdf_path):
+    text = ""
+    doc = fitz.open(pdf_path)
+    
+    for page in doc:
+        page_text = page.get_text()
+        if page_text.strip():
+            text += page_text
+    
+    return text
+
+# -----------------------
+# Clean Text
+# -----------------------
+def clean_text(text):
+    text = text.replace("\n", " ")
+    text = text.replace("  ", " ")
+    return text.strip()
+
+# -----------------------
+# Convert PDF to Audio
+# -----------------------
+def convert_pdf():
+    global pdf_file
+    
+    if not pdf_file:
+        messagebox.showerror("Error", "Please upload a PDF first!")
+        return
+
+    text = extract_text(pdf_file)
+    text = clean_text(text)
+
+    speed = speed_scale.get()
+    volume = volume_scale.get()
+
+    try:
+        engine = pyttsx3.init()
+        engine.setProperty('rate', speed)
+        engine.setProperty('volume', volume)
+        engine.save_to_file(text, "output.mp3")
+        engine.runAndWait()
+
+        messagebox.showinfo("Success", "Audio saved as output.mp3")
+        os.system("start output.mp3")  # Auto play (Windows)
+
+    except Exception as e:
+        messagebox.showerror("Error", str(e))
+
+# -----------------------
+# Upload PDF
+# -----------------------
+def upload_pdf():
+    global pdf_file
+    pdf_file = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
+    if pdf_file:
+        label_file.config(text=pdf_file)
+
+# -----------------------
+# GUI Setup
+# -----------------------
+root = tk.Tk()
+root.title("PDF to Audiobook Converter")
+root.geometry("500x400")
+
+btn_upload = tk.Button(root, text="Upload PDF", command=upload_pdf)
+btn_upload.pack(pady=10)
+
+label_file = tk.Label(root, text="No file selected")
+label_file.pack()
+
+# Speed Slider
+speed_scale = tk.Scale(root, from_=100, to=300,
+                       orient="horizontal",
+                       label="Speed")
+speed_scale.set(150)
+speed_scale.pack(pady=10)
+
+# Volume Slider
+volume_scale = tk.Scale(root, from_=0, to=1,
+                        resolution=0.1,
+                        orient="horizontal",
+                        label="Volume")
+volume_scale.set(1.0)
+volume_scale.pack(pady=10)
+
+btn_convert = tk.Button(root, text="Convert to Audio",
+                        command=convert_pdf)
+btn_convert.pack(pady=20)
+
+root.mainloop()
